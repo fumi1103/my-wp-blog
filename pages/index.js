@@ -14,7 +14,7 @@ export default function Home({ posts }) {
           <a href="#">事業内容</a>
           <a href="#">会社概要</a>
           <a href="#">お知らせ</a>
-          <a href="/contact">お問い合わせ</a>
+          <a href="/contact.html">お問い合わせ</a>
         </div>
       </nav>
 

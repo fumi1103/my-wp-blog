@@ -28,7 +28,7 @@ export default function Contact() {
 
       {/* フォーム */}
       <div style={{ padding: '3rem 2rem 4rem', maxWidth: '600px' }}>
-        <form name="contact" method="POST" data-netlify="true" action="/thanks">
+        <form name="contact" method="POST" action="/thanks" netlify>
           <input type="hidden" name="form-name" value="contact" />
 
           {/* お名前 */}
