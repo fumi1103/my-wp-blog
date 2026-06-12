@@ -28,10 +28,10 @@ export default function Home({ posts }) {
             fontFamily: 'var(--font-serif)', fontSize: '32px', fontWeight: 300,
             lineHeight: 1.6, letterSpacing: '0.08em', marginBottom: '1rem'
           }}>
-            誠実に、丁寧に。<br />あなたのビジネスを<br />支えます。
+            テクノロジーで、<br />ビジネスを<br />前へ進める。
           </h1>
           <p style={{ fontSize: '13px', color: 'var(--color-text-sub)', lineHeight: 2, letterSpacing: '0.05em' }}>
-            伝統と革新の融合から生まれる<br />確かな価値をお届けします。
+            Web・アプリ・生成AI・IoT——<br />最新技術を組み合わせ、貴社の課題を解決します。
           </p>
         </div>
         <svg width="80" height="80" viewBox="0 0 100 100" fill="none" style={{ opacity: 0.15 }}>
