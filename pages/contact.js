@@ -1,9 +1,19 @@
 import { useState } from 'react';
 
-const ESTIMATE_SHEET_URL = 'https://docs.google.com/forms/d/1j_Zh4KYhdyfZFjEvvm4MmQsGaQrQGPDuGgbRiJpoc78/';
+const ESTIMATE_FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSfV6xTZDWgnpl6LQqpHN42jku1SN9mgJfKd2J7CpNVl-ui9sg/viewform';
+
+function buildEstimateUrl(name, email) {
+  const params = new URLSearchParams();
+  if (name)  params.set('entry.1500183168', name);
+  if (email) params.set('entry.758741633', email);
+  const qs = params.toString();
+  return qs ? `${ESTIMATE_FORM_BASE}?${qs}` : ESTIMATE_FORM_BASE;
+}
 
 export default function Contact() {
   const [contactType, setContactType] = useState('サービスについて');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
 
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', minHeight: '100vh' }}>
@@ -46,6 +56,8 @@ export default function Contact() {
               type="text"
               name="name"
               required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               style={{
                 width: '100%', padding: '0.8rem 1rem', fontSize: '14px',
                 border: '0.5px solid var(--color-border)', background: 'transparent',
@@ -63,6 +75,8 @@ export default function Contact() {
               type="email"
               name="email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               style={{
                 width: '100%', padding: '0.8rem 1rem', fontSize: '14px',
                 border: '0.5px solid var(--color-border)', background: 'transparent',
@@ -96,10 +110,10 @@ export default function Contact() {
                 border: '0.5px solid var(--color-green)',
                 fontSize: '12px', letterSpacing: '0.05em', lineHeight: 1.8,
               }}>
-                お見積もりのご依頼は、下記フォームよりお送りください。
+                お見積もりのご依頼は、下記フォームよりお送りいただくとスムーズです。
                 <br />
                 <a
-                  href={ESTIMATE_SHEET_URL}
+                  href={buildEstimateUrl(name, email)}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ color: 'var(--color-green)', letterSpacing: '0.05em' }}

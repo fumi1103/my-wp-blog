@@ -70,12 +70,12 @@
 
         <div class="field">
           <label>お名前 <span class="required">*</span></label>
-          <input type="text" name="name" required />
+          <input type="text" name="name" id="inputName" required oninput="updateEstimateLink()" />
         </div>
 
         <div class="field">
           <label>メールアドレス <span class="required">*</span></label>
-          <input type="email" name="email" required />
+          <input type="email" name="email" id="inputEmail" required oninput="updateEstimateLink()" />
         </div>
 
         <div class="field">
@@ -86,8 +86,8 @@
             <option value="その他">その他</option>
           </select>
           <div id="estimateLink" style="display:none; margin-top:0.8rem; padding:0.8rem 1rem; border:0.5px solid #3B6D11; font-size:12px; letter-spacing:0.05em; line-height:1.8;">
-            お見積もりのご依頼は、下記フォームよりお送りください。<br>
-            <a href="https://docs.google.com/forms/d/1j_Zh4KYhdyfZFjEvvm4MmQsGaQrQGPDuGgbRiJpoc78/"
+            お見積もりのご依頼は、下記フォームよりお送りいただくとスムーズです。<br>
+            <a id="estimateAnchor" href="#"
                target="_blank" rel="noopener noreferrer" style="color:#3B6D11;">
               → お見積もり依頼フォームを開く
             </a>
@@ -109,10 +109,29 @@
     </footer>
   </div>
   <script>
+    var ESTIMATE_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSfV6xTZDWgnpl6LQqpHN42jku1SN9mgJfKd2J7CpNVl-ui9sg/viewform';
+
+    function buildEstimateUrl() {
+      var name  = document.getElementById('inputName').value;
+      var email = document.getElementById('inputEmail').value;
+      var params = new URLSearchParams();
+      if (name)  params.set('entry.1500183168', name);
+      if (email) params.set('entry.758741633', email);
+      var qs = params.toString();
+      return qs ? ESTIMATE_BASE + '?' + qs : ESTIMATE_BASE;
+    }
+
     function toggleEstimateLink() {
       var sel = document.getElementById('contactType');
       var box = document.getElementById('estimateLink');
       box.style.display = sel.value === 'お見積もり' ? 'block' : 'none';
+      if (sel.value === 'お見積もり') updateEstimateLink();
+    }
+
+    function updateEstimateLink() {
+      var sel = document.getElementById('contactType');
+      if (sel.value !== 'お見積もり') return;
+      document.getElementById('estimateAnchor').href = buildEstimateUrl();
     }
   </script>
 </body>
