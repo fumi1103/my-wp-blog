@@ -11,10 +11,10 @@ export default function Contact() {
           匠テックラボ <span style={{ fontSize: '13px', fontWeight: 300, color: 'var(--color-text-sub)' }}>Takumi Tech Lab</span>
         </a>
         <div style={{ display: 'flex', gap: '2rem', fontSize: '13px', color: 'var(--color-text-sub)', letterSpacing: '0.1em' }}>
-          <a href="#">事業内容</a>
-          <a href="#">会社概要</a>
-          <a href="#">お知らせ</a>
-          <a href="/contact">お問い合わせ</a>
+          <a href="/services">事業内容</a>
+          <a href="/about">会社概要</a>
+          <a href="/#news">お知らせ</a>
+          <a href="/contact" style={{ color: 'var(--color-green)', borderBottom: '0.5px solid var(--color-green)', paddingBottom: '2px' }}>お問い合わせ</a>
         </div>
       </nav>
 
