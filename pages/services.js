@@ -58,7 +58,7 @@ export default function Services() {
         <div style={{ display: 'flex', gap: '2rem', fontSize: '13px', color: 'var(--color-text-sub)', letterSpacing: '0.1em' }}>
           <a href="/services" style={{ color: 'var(--color-green)', borderBottom: '0.5px solid var(--color-green)', paddingBottom: '2px' }}>事業内容</a>
           <a href="/about">会社概要</a>
-          <a href="/#news">お知らせ</a>
+          <a href="/news">お知らせ</a>
           <a href="/contact">お問い合わせ</a>
         </div>
       </nav>
