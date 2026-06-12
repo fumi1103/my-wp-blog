@@ -1,4 +1,10 @@
+import { useState } from 'react';
+
+const ESTIMATE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1kaca4zHwZIeJnib-4Mlx2jYCkPJZ1Tejxte8flqhMb0/edit?usp=drive_link';
+
 export default function Contact() {
+  const [contactType, setContactType] = useState('サービスについて');
+
   return (
     <div style={{ maxWidth: '900px', margin: '0 auto', minHeight: '100vh' }}>
 
@@ -72,6 +78,8 @@ export default function Contact() {
             </label>
             <select
               name="type"
+              value={contactType}
+              onChange={(e) => setContactType(e.target.value)}
               style={{
                 width: '100%', padding: '0.8rem 1rem', fontSize: '14px',
                 border: '0.5px solid var(--color-border)', background: 'transparent',
@@ -82,6 +90,24 @@ export default function Contact() {
               <option value="お見積もり">お見積もり</option>
               <option value="その他">その他</option>
             </select>
+            {contactType === 'お見積もり' && (
+              <div style={{
+                marginTop: '0.8rem', padding: '0.8rem 1rem',
+                border: '0.5px solid var(--color-green)',
+                fontSize: '12px', letterSpacing: '0.05em', lineHeight: 1.8,
+              }}>
+                お見積もりのご依頼は、下記シートにご記入いただくとスムーズです。
+                <br />
+                <a
+                  href={ESTIMATE_SHEET_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: 'var(--color-green)', letterSpacing: '0.05em' }}
+                >
+                  → お見積もり依頼シートを開く
+                </a>
+              </div>
+            )}
           </div>
 
           {/* お問い合わせ内容 */}
