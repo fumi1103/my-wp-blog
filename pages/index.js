@@ -8,7 +8,7 @@ export default function Home({ posts }) {
         padding: '1.2rem 2rem', borderBottom: '0.5px solid var(--color-border)'
       }}>
         <div style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', letterSpacing: '0.15em' }}>
-          御社名 <span style={{ fontSize: '13px', fontWeight: 300, color: 'var(--color-text-sub)' }}>Company Name</span>
+          匠テックラボ <span style={{ fontSize: '13px', fontWeight: 300, color: 'var(--color-text-sub)' }}>Takumi Tech Lab</span>
         </div>
         <div style={{ display: 'flex', gap: '2rem', fontSize: '13px', color: 'var(--color-text-sub)', letterSpacing: '0.1em' }}>
           <a href="#">事業内容</a>
@@ -126,9 +126,9 @@ export default function Home({ posts }) {
         padding: '1.5rem 2rem', borderTop: '0.5px solid var(--color-border)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center'
       }}>
-        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '13px', letterSpacing: '0.15em' }}>御社名</div>
+        <div style={{ fontFamily: 'var(--font-serif)', fontSize: '13px', letterSpacing: '0.15em' }}>匠テックラボ</div>
         <div style={{ fontSize: '11px', color: 'var(--color-text-hint)', letterSpacing: '0.05em' }}>
-          © 2026 Company Name. All rights reserved.
+          © 2026 匠テックラボ. All rights reserved.
         </div>
       </footer>
 

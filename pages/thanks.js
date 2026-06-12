@@ -5,7 +5,7 @@ export default function Thanks() {
         display: 'flex', padding: '1.2rem 2rem', borderBottom: '0.5px solid var(--color-border)'
       }}>
         <a href="/" style={{ fontFamily: 'var(--font-serif)', fontSize: '18px', letterSpacing: '0.15em' }}>
-          御社名
+          匠テックラボ
         </a>
       </nav>
       <div style={{ padding: '5rem 2rem', textAlign: 'center' }}>
