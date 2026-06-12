@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const ESTIMATE_SHEET_URL = 'https://docs.google.com/spreadsheets/d/1kaca4zHwZIeJnib-4Mlx2jYCkPJZ1Tejxte8flqhMb0/edit?usp=drive_link';
+const ESTIMATE_SHEET_URL = 'https://docs.google.com/forms/d/1j_Zh4KYhdyfZFjEvvm4MmQsGaQrQGPDuGgbRiJpoc78/';
 
 export default function Contact() {
   const [contactType, setContactType] = useState('サービスについて');
@@ -96,7 +96,7 @@ export default function Contact() {
                 border: '0.5px solid var(--color-green)',
                 fontSize: '12px', letterSpacing: '0.05em', lineHeight: 1.8,
               }}>
-                お見積もりのご依頼は、下記シートにご記入いただくとスムーズです。
+                お見積もりのご依頼は、下記フォームよりお送りください。
                 <br />
                 <a
                   href={ESTIMATE_SHEET_URL}
@@ -104,7 +104,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   style={{ color: 'var(--color-green)', letterSpacing: '0.05em' }}
                 >
-                  → お見積もり依頼シートを開く
+                  → お見積もり依頼フォームを開く
                 </a>
               </div>
             )}
