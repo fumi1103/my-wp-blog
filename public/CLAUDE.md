@@ -46,7 +46,7 @@ lustrous-selkie-c29bce.netlify.app に反映
 | ロリポップ | WordPressホスティング | `wordpress.unwired.jp` |
 | GitHub | ソースコード管理 | `fumi1103/my-wp-blog` |
 | Netlify | 静的サイトホスティング | `lustrous-selkie-c29bce.netlify.app` |
-| Formspree | お問い合わせフォーム | `mbdezazk` |
+| Formspree | お問い合わせフォーム | `mjgdpoyy` |
 
 ## WordPress Webhook設定
 ロリポップのWordPress管理画面：
