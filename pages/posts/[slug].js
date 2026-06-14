@@ -72,8 +72,11 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?slug=${params.slug}&_embed`
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?slug=${encodeURIComponent(params.slug)}&_embed`
   );
   const posts = await res.json();
+  if (!posts || posts.length === 0) {
+    return { notFound: true };
+  }
   return { props: { post: posts[0] } };
 }
