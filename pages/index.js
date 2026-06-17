@@ -138,7 +138,7 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?_embed&per_page=10`
+    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?_embed&per_page=3`
   );
   const posts = await res.json();
   return { props: { posts } };
