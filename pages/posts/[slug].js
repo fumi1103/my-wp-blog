@@ -62,21 +62,36 @@ export default function Post({ post }) {
 }
 
 export async function getStaticPaths() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?per_page=100`
-  );
-  const posts = await res.json();
-  const paths = posts.map((post) => ({ params: { slug: post.slug } }));
-  return { paths, fallback: 'blocking' };
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?per_page=100`
+    );
+    if (!res.ok) throw new Error(`WP response ${res.status}`);
+    const posts = await res.json();
+    const paths = posts.map((post) => ({ params: { slug: post.slug } }));
+    return { paths, fallback: 'blocking' };
+  } catch (error) {
+    // WordPress側が不安定な場合でもビルドを止めない。
+    // パスは空にして、アクセス時にfallback: 'blocking'で都度生成する。
+    console.error('Failed to fetch post list for getStaticPaths', error);
+    return { paths: [], fallback: 'blocking' };
+  }
 }
 
 export async function getStaticProps({ params }) {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?slug=${encodeURIComponent(params.slug)}&_embed`
-  );
-  const posts = await res.json();
-  if (!posts || posts.length === 0) {
-    return { notFound: true };
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?slug=${encodeURIComponent(params.slug)}&_embed`
+    );
+    if (!res.ok) throw new Error(`WP response ${res.status}`);
+    const posts = await res.json();
+    if (!posts || posts.length === 0) {
+      return { notFound: true, revalidate: 60 };
+    }
+    return { props: { post: posts[0] }, revalidate: 60 };
+  } catch (error) {
+    // WordPressが一時的に落ちていてもビルド全体を失敗させない。
+    console.error('Failed to fetch WordPress data', error);
+    return { notFound: true, revalidate: 60 };
   }
-  return { props: { post: posts[0] } };
 }

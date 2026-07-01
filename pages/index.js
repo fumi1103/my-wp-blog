@@ -137,9 +137,15 @@ export default function Home({ posts }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?_embed&per_page=3`
-  );
-  const posts = await res.json();
-  return { props: { posts } };
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_WP_URL}/wp-json/wp/v2/posts?_embed&per_page=3`
+    );
+    if (!res.ok) throw new Error(`WP response ${res.status}`);
+    const posts = await res.json();
+    return { props: { posts }, revalidate: 60 };
+  } catch (error) {
+    console.error('Failed to fetch WordPress posts for /', error);
+    return { props: { posts: [] }, revalidate: 60 };
+  }
 }
