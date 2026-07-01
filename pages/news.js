@@ -22,10 +22,12 @@ export default function News({ posts }) {
   });
 
   const prevMonth = () => {
+    setSelectedDate(null);
     if (viewMonth === 0) { setViewYear(y => y - 1); setViewMonth(11); }
     else setViewMonth(m => m - 1);
   };
   const nextMonth = () => {
+    setSelectedDate(null);
     if (viewMonth === 11) { setViewYear(y => y + 1); setViewMonth(0); }
     else setViewMonth(m => m + 1);
   };
@@ -40,7 +42,13 @@ export default function News({ posts }) {
   const makeDateKey = (d) =>
     `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
 
-  const filteredPosts = selectedDate ? (postDateMap[selectedDate] || []) : posts;
+  // カレンダーが表示している月のお知らせだけを月ごとにまとめる
+  const monthPosts = posts.filter(post => {
+    const d = new Date(post.date);
+    return d.getFullYear() === viewYear && d.getMonth() === viewMonth;
+  });
+
+  const filteredPosts = selectedDate ? (postDateMap[selectedDate] || []) : monthPosts;
 
   const btnStyle = {
     background: 'none', border: 'none', cursor: 'pointer',
@@ -160,6 +168,19 @@ export default function News({ posts }) {
         {/* 記事一覧 */}
         <div style={{ flex: 1, minWidth: '280px' }}>
 
+          {/* 月見出し：カレンダーのめくりに連動 */}
+          <div style={{
+            fontFamily: 'var(--font-serif)', fontSize: '16px', letterSpacing: '0.1em',
+            marginBottom: '1.2rem', paddingBottom: '0.8rem',
+            borderBottom: '0.5px solid var(--color-border)',
+            display: 'flex', justifyContent: 'space-between', alignItems: 'baseline',
+          }}>
+            <span>{viewYear}年{viewMonth + 1}月のお知らせ</span>
+            <span style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', color: 'var(--color-text-hint)', letterSpacing: '0.05em' }}>
+              全{monthPosts.length}件
+            </span>
+          </div>
+
           {selectedDate && (
             <div style={{
               fontSize: '12px', letterSpacing: '0.08em', color: 'var(--color-text-hint)',
@@ -212,7 +233,7 @@ export default function News({ posts }) {
             );
           }) : !selectedDate && (
             <div style={{ fontSize: '13px', color: 'var(--color-text-hint)', padding: '2rem 0' }}>
-              記事はまだありません。
+              {viewYear}年{viewMonth + 1}月のお知らせはありません。
             </div>
           )}
         </div>
